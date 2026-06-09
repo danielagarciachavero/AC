@@ -7796,13 +7796,13 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=305b9356">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5e1a503e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="K-means-sobre-el-dataset-ampliado-de-Shapes-(Ejercicio-1.4)">K-means sobre el dataset ampliado de Shapes (Ejercicio 1.4)<a class="anchor-link" href="#K-means-sobre-el-dataset-ampliado-de-Shapes-(Ejercicio-1.4)">¶</a></h1><p>En este notebook se utiliza el dataset de 100 elementos generado mediante oversampling sintético.<br/>
+<h1 id="K-means-sobre-el-dataset-ampliado-de-Shapes">K-means sobre el dataset ampliado de Shapes<a class="anchor-link" href="#K-means-sobre-el-dataset-ampliado-de-Shapes">¶</a></h1><p>En este notebook se utiliza el dataset de 100 elementos generado mediante oversampling sintético.<br/>
 El objetivo es:</p>
 <ol>
 <li>Cargar el CSV desde GitHub.</li>
@@ -7814,12 +7814,12 @@ El objetivo es:</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8bfdc767">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5208eaf1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -7844,7 +7844,7 @@ El objetivo es:</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5a3fdbc7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a6e14214">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7855,12 +7855,12 @@ Como el archivo está delimitado por punto y coma (<code>;</code>), se indica <c
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9392d5a1">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4ad70ba1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.api.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_object_dtype</span><span class="p">,</span> <span class="n">is_string_dtype</span>
@@ -8061,7 +8061,7 @@ Como el archivo está delimitado por punto y coma (<code>;</code>), se indica <c
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=612afdaf">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2546ae2a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8071,12 +8071,12 @@ Como el archivo está delimitado por punto y coma (<code>;</code>), se indica <c
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0c2a3fab">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7009c069">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">columnas_esperadas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Forma"</span><span class="p">,</span> <span class="s2">"Numero_lados"</span><span class="p">,</span> <span class="s2">"Color"</span><span class="p">,</span> <span class="s2">"Tamano"</span><span class="p">,</span> <span class="s2">"Direccion"</span><span class="p">]</span>
@@ -8213,7 +8213,7 @@ Name: count, dtype: int64[pyarrow]</pre>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2cca67f1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2bfd653">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8224,12 +8224,12 @@ Name: count, dtype: int64[pyarrow]</pre>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d9d966dc">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c6d2ebd8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Tratamos todas las variables como categóricas para evitar relaciones ordinales artificiales</span>
@@ -8426,7 +8426,7 @@ Name: count, dtype: int64[pyarrow]</pre>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=588ce668">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7e710801">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8441,12 +8441,12 @@ Name: count, dtype: int64[pyarrow]</pre>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90388e95">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=608580aa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">detectar_codo</span><span class="p">(</span><span class="n">k_values</span><span class="p">,</span> <span class="n">inercias</span><span class="p">):</span>
@@ -8516,12 +8516,12 @@ k sugerida por el coeficiente de silueta: 4
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3590d174">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f3189031">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -8563,7 +8563,7 @@ k sugerida por el coeficiente de silueta: 4
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8e1efe72">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9106c652">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8574,12 +8574,12 @@ Si se quiere forzar otro valor, se puede modificar manualmente la variable <code
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84ac5389">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=248c80da">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">k_optima</span> <span class="o">=</span> <span class="n">k_silueta</span>
@@ -8829,7 +8829,7 @@ Si se quiere forzar otro valor, se puede modificar manualmente la variable <code
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=02403a72">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3e64791b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8839,12 +8839,12 @@ Si se quiere forzar otro valor, se puede modificar manualmente la variable <code
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e9416337">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f590d6d2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Tamaño de cada cluster:"</span><span class="p">)</span>
@@ -8976,12 +8976,12 @@ Name: count, dtype: int64</pre>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25d76b95">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48a32e15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Tablas cruzadas para entender mejor cada cluster</span>
@@ -9307,7 +9307,7 @@ Name: count, dtype: int64</pre>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c38b3acc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d974eee1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9318,12 +9318,12 @@ Esta visualización no se usa para entrenar el modelo, solo para representar gr�
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=488d3aee">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d9b495ec">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
@@ -9384,15 +9384,15 @@ dtype: float64</pre>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2beda8af">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48aab5ae">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="9.-An%C3%A1lisis-de-los-resultados">9. Análisis de los resultados<a class="anchor-link" href="#9.-An%C3%A1lisis-de-los-resultados">¶</a></h2><p>La <strong>k óptima seleccionada fue 4</strong>, ya que tanto el <strong>método del codo</strong> como el <strong>coeficiente de silueta</strong> señalaron este valor como el más adecuado. Antes de aplicar el algoritmo K-means, las variables categóricas del dataset se transformaron mediante <strong>one-hot encoding</strong>, puesto que este algoritmo requiere trabajar con datos numéricos.</p>
+<h2 id="8.-An%C3%A1lisis-de-los-resultados">8. Análisis de los resultados<a class="anchor-link" href="#8.-An%C3%A1lisis-de-los-resultados">¶</a></h2><p>La <strong>k óptima seleccionada fue 4</strong>, ya que tanto el <strong>método del codo</strong> como el <strong>coeficiente de silueta</strong> señalaron este valor como el más adecuado. Antes de aplicar el algoritmo K-means, las variables categóricas del dataset se transformaron mediante <strong>one-hot encoding</strong>, puesto que este algoritmo requiere trabajar con datos numéricos.</p>
 <p>El algoritmo agrupó los datos principalmente en función de la <strong>forma geométrica</strong>. Los cuatro clústeres obtenidos se corresponden con los cuatro tipos de figuras presentes en el dataset: <strong>triángulos, círculos, rectángulos y cuadrados</strong>. Cada grupo contiene <strong>25 elementos</strong>, lo que refleja la distribución equilibrada del dataset sintético. Por tanto, la separación realizada por K-means se explica sobre todo por la forma y, de manera secundaria, por atributos relacionados con ella, como el <strong>número de lados</strong> y la <strong>dirección</strong>.</p>
-<p>En comparación con el criterio visual utilizado por el LLM, el resultado de K-means se aproxima más al agrupamiento basado en la <strong>geometría</strong> que al basado en el <strong>color</strong>. El LLM podía modificar su criterio según el número de conjuntos solicitado; por ejemplo, al pedir 2 clusters agrupó las figuras según colores cálidos y fríos. En cambio, K-means no separó los datos principalmente por color ni por tamaño, sino por la estructura geométrica de las figuras.</p>
+<p>En comparación con el criterio visual utilizado por el LLM, el resultado de K-means se aproxima más al agrupamiento basado en la <strong>geometría</strong> que al basado en el <strong>color</strong>. El LLM podía modificar su criterio según el número de conjuntos solicitado; por ejemplo, al pedir 2 clústeres agrupó las figuras según colores cálidos y fríos. En cambio, K-means no separó los datos principalmente por color ni por tamaño, sino por la estructura geométrica de las figuras.</p>
 <p>Los grupos obtenidos son coherentes con el dataset original y con el proceso de oversampling realizado. Esto se debe a que el dataset ampliado mantenía una distribución equilibrada de las cuatro formas. Además, se conservan las relaciones lógicas entre atributos: los triángulos tienen 3 lados, los círculos 0, los cuadrados y rectángulos 4, y las direcciones asignadas son compatibles con cada tipo de figura.</p>
 </div>
 </div>
