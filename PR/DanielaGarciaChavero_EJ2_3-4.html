@@ -7802,10 +7802,10 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Fine-tuning-de-un-modelo-preentrenado:-Muffin-vs-Chihuahua">Fine-tuning de un modelo preentrenado: Muffin vs Chihuahua<a class="anchor-link" href="#Fine-tuning-de-un-modelo-preentrenado:-Muffin-vs-Chihuahua">¶</a></h1><p>Este notebook resuelve el apartado <strong>2.3 y 2.4</strong> de la práctica: utilizar el dataset de Kaggle propuesto para realizar el <strong>fine-tuning</strong> de un modelo preentrenado de visión capaz de distinguir entre <strong>muffins</strong> y <strong>chihuahuas</strong>.</p>
+<h1 id="Fine-tuning-de-un-modelo-preentrenado:-Muffin-vs-Chihuahua">Fine-tuning de un modelo preentrenado: Muffin vs Chihuahua<a class="anchor-link" href="#Fine-tuning-de-un-modelo-preentrenado:-Muffin-vs-Chihuahua">¶</a></h1><p>Este notebook resuelve los apartados <strong>2.3 y 2.4</strong> de la práctica: utilizar el dataset de Kaggle propuesto para realizar el <strong>fine-tuning</strong> de un modelo preentrenado de visión capaz de distinguir entre <strong>muffins</strong> y <strong>chihuahuas</strong>, y evaluar el modelo final mediante las métricas trabajadas en la PEC 2.</p>
 <p>La metodología empleada se basa en <strong>Transfer Learning</strong> con <strong>EfficientNet-B0</strong>, una arquitectura convolucional preentrenada con ImageNet. El modelo original se adapta a una tarea de clasificación binaria sustituyendo su clasificador final por una capa con dos salidas, una para cada clase. El entrenamiento se organiza en dos fases: primero se entrena únicamente el nuevo clasificador y después se realiza ajuste fino de las últimas capas del extractor de características.</p>
 <p>El notebook está preparado para ejecutarse en <strong>Anaconda sobre MacBook con Apple Silicon</strong>, incluyendo MacBook <strong>M3 Pro</strong>, mediante el backend <strong>MPS</strong> de PyTorch. Si se ejecuta en otro entorno, también detecta automáticamente CUDA o CPU.</p>
-<p>Además, el rendimiento final se evalúa mediante las métricas trabajadas en la PEC 2: <strong>matriz de confusión</strong> y <strong>F1-Score</strong>, junto con exactitud, precision y recall para interpretar mejor los resultados.</p>
+<p>Además, el rendimiento final se evalúa mediante las métricas trabajadas en la PEC 2: <strong>matriz de confusión</strong> y <strong>F1-Score</strong>, junto con exactitud, precision y recall para interpretar mejor los resultados obtenidos.</p>
 </div>
 </div>
 </div>
@@ -7825,7 +7825,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>matplotlib<span class="w"> </span>pillow<span class="w"> </span>kagglehub<span class="w"> </span>scikit-learn<span class="w"> </span>tqdm<span class="w"> </span>pandas
@@ -7856,7 +7856,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -7982,7 +7982,7 @@ Prueba MPS correcta: tensor([1.], device='mps:0')
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">IDENTIFICADOR_DATASET</span> <span class="o">=</span> <span class="s2">"samuelcortinhas/muffin-vs-chihuahua-image-classification"</span>
@@ -8015,7 +8015,13 @@ Prueba MPS correcta: tensor([1.], device='mps:0')
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="4.-Verificaci%C3%B3n-de-la-estructura-del-dataset">4. Verificación de la estructura del dataset<a class="anchor-link" href="#4.-Verificaci%C3%B3n-de-la-estructura-del-dataset">¶</a></h2><p>El dataset puede contener carpetas como <code>train</code>, <code>test</code> o <code>validation</code>, cada una con subcarpetas por clase. Para que el notebook sea robusto, se buscan automáticamente carpetas compatibles con <code>torchvision.datasets.ImageFolder</code>, es decir, carpetas que contengan al menos dos subdirectorios de clase con imágenes.</p>
+<h2 id="4.-Verificaci%C3%B3n-de-la-estructura-del-dataset">4. Verificación de la estructura del dataset<a class="anchor-link" href="#4.-Verificaci%C3%B3n-de-la-estructura-del-dataset">¶</a></h2><p>El dataset de Kaggle utilizado en esta práctica se descarga con dos particiones principales: <code>train</code> y <code>test</code>. Esta estructura debe respetarse para evitar fuga de información (<em>data leakage</em>):</p>
+<ul>
+<li>La carpeta <strong><code>train</code></strong> se utiliza para entrenar el modelo.</li>
+<li>Como el dataset no proporciona una carpeta <code>validation</code> independiente, se separa una parte de <code>train</code> para validación interna. Esta validación se usa para monitorizar el entrenamiento y seleccionar el mejor modelo.</li>
+<li>La carpeta <strong><code>test</code></strong> se reserva exclusivamente para la evaluación final del apartado 4.</li>
+</ul>
+<p>Por tanto, las imágenes de <code>test</code> no se utilizan ni durante el entrenamiento del clasificador ni durante el ajuste fino. Solo se emplean al final para calcular la matriz de confusión y el F1-Score.</p>
 </div>
 </div>
 </div>
@@ -8024,7 +8030,7 @@ Prueba MPS correcta: tensor([1.], device='mps:0')
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">EXTENSIONES_IMAGEN</span> <span class="o">=</span> <span class="p">{</span><span class="s2">".jpg"</span><span class="p">,</span> <span class="s2">".jpeg"</span><span class="p">,</span> <span class="s2">".png"</span><span class="p">,</span> <span class="s2">".bmp"</span><span class="p">,</span> <span class="s2">".webp"</span><span class="p">}</span>
@@ -8075,7 +8081,7 @@ Prueba MPS correcta: tensor([1.], device='mps:0')
     <span class="k">return</span> <span class="kc">None</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Buscando carpetas compatibles con ImageFolder..."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Buscando carpetas train/test compatibles con ImageFolder..."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ruta_entrenamiento</span> <span class="o">=</span> <span class="n">buscar_carpeta_particion</span><span class="p">(</span><span class="n">ruta_dataset</span><span class="p">,</span> <span class="p">{</span><span class="s2">"train"</span><span class="p">,</span> <span class="s2">"training"</span><span class="p">})</span>
 <span class="n">ruta_validacion</span> <span class="o">=</span> <span class="n">buscar_carpeta_particion</span><span class="p">(</span><span class="n">ruta_dataset</span><span class="p">,</span> <span class="p">{</span><span class="s2">"val"</span><span class="p">,</span> <span class="s2">"valid"</span><span class="p">,</span> <span class="s2">"validation"</span><span class="p">})</span>
 <span class="n">ruta_prueba</span> <span class="o">=</span> <span class="n">buscar_carpeta_particion</span><span class="p">(</span><span class="n">ruta_dataset</span><span class="p">,</span> <span class="p">{</span><span class="s2">"test"</span><span class="p">,</span> <span class="s2">"testing"</span><span class="p">})</span>
@@ -8084,22 +8090,28 @@ Prueba MPS correcta: tensor([1.], device='mps:0')
     <span class="n">ruta_entrenamiento</span> <span class="o">=</span> <span class="n">buscar_raiz_imagefolder</span><span class="p">(</span><span class="n">ruta_dataset</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">ruta_entrenamiento</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">"No se encontró una carpeta compatible con torchvision.datasets.ImageFolder."</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">"No se encontró una carpeta de entrenamiento compatible con torchvision.datasets.ImageFolder."</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Carpeta de entrenamiento detectada: </span><span class="si">{</span><span class="n">ruta_entrenamiento</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Carpeta train usada para entrenamiento/validación: </span><span class="si">{</span><span class="n">ruta_entrenamiento</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 <span class="k">if</span> <span class="n">ruta_validacion</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Carpeta de validación detectada: </span><span class="si">{</span><span class="n">ruta_validacion</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Carpeta de validación independiente detectada: </span><span class="si">{</span><span class="n">ruta_validacion</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"No se detectó carpeta de validación: se creará una partición desde train."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"No se detectó carpeta validation: la validación se extraerá de train."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">ruta_prueba</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Carpeta de test detectada: </span><span class="si">{</span><span class="n">ruta_prueba</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Carpeta test reservada para evaluación final: </span><span class="si">{</span><span class="n">ruta_prueba</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"No se detectó carpeta de test independiente."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Aviso: no se detectó carpeta test independiente; se usará validación como aproximación final."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Distribución de imágenes en entrenamiento:"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Distribución original de imágenes en train:"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">nombre_clase</span><span class="p">,</span> <span class="n">numero_imagenes</span> <span class="ow">in</span> <span class="n">contar_imagenes_por_clase</span><span class="p">(</span><span class="n">ruta_entrenamiento</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" - </span><span class="si">{</span><span class="n">nombre_clase</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">numero_imagenes</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">ruta_prueba</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Distribución original de imágenes en test:"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">nombre_clase</span><span class="p">,</span> <span class="n">numero_imagenes</span> <span class="ow">in</span> <span class="n">contar_imagenes_por_clase</span><span class="p">(</span><span class="n">ruta_prueba</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">" - </span><span class="si">{</span><span class="n">nombre_clase</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">numero_imagenes</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8112,14 +8124,16 @@ Prueba MPS correcta: tensor([1.], device='mps:0')
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Buscando carpetas compatibles con ImageFolder...
-Carpeta de entrenamiento detectada: /Users/danielagarciachavero/.cache/kagglehub/datasets/samuelcortinhas/muffin-vs-chihuahua-image-classification/versions/2/train
-No se detectó carpeta de validación: se creará una partición desde train.
-Carpeta de test detectada: /Users/danielagarciachavero/.cache/kagglehub/datasets/samuelcortinhas/muffin-vs-chihuahua-image-classification/versions/2/test
-
-Distribución de imágenes en entrenamiento:
+<pre>Buscando carpetas train/test compatibles con ImageFolder...
+Carpeta train usada para entrenamiento/validación: /Users/danielagarciachavero/.cache/kagglehub/datasets/samuelcortinhas/muffin-vs-chihuahua-image-classification/versions/2/train
+No se detectó carpeta validation: la validación se extraerá de train.
+Carpeta test reservada para evaluación final: /Users/danielagarciachavero/.cache/kagglehub/datasets/samuelcortinhas/muffin-vs-chihuahua-image-classification/versions/2/test
+Distribución original de imágenes en train:
  - chihuahua: 2559
  - muffin: 2174
+Distribución original de imágenes en test:
+ - chihuahua: 640
+ - muffin: 544
 </pre>
 </div>
 </div>
@@ -8146,7 +8160,7 @@ Distribución de imágenes en entrenamiento:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Normalización de ImageNet, coherente con los pesos preentrenados de EfficientNet-B0.</span>
@@ -8194,7 +8208,13 @@ Distribución de imágenes en entrenamiento:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="6.-Creaci%C3%B3n-de-los-conjuntos-de-entrenamiento,-validaci%C3%B3n-y-test">6. Creación de los conjuntos de entrenamiento, validación y test<a class="anchor-link" href="#6.-Creaci%C3%B3n-de-los-conjuntos-de-entrenamiento,-validaci%C3%B3n-y-test">¶</a></h2><p>Si el dataset contiene una carpeta de validación, se utiliza directamente. Si no existe, se separa un 20% de las imágenes de entrenamiento para validación de forma reproducible. Si existe una carpeta <code>test</code>, se reserva exclusivamente para la evaluación final del modelo.</p>
+<h2 id="6.-Creaci%C3%B3n-de-los-conjuntos-de-entrenamiento,-validaci%C3%B3n-y-test">6. Creación de los conjuntos de entrenamiento, validación y test<a class="anchor-link" href="#6.-Creaci%C3%B3n-de-los-conjuntos-de-entrenamiento,-validaci%C3%B3n-y-test">¶</a></h2><p>La estructura descargada contiene <code>train</code> y <code>test</code>. Para respetar el protocolo experimental, el notebook aplica la siguiente estrategia:</p>
+<ol>
+<li>Se carga la carpeta <code>train</code> completa.</li>
+<li>Se divide <code>train</code> de forma reproducible en entrenamiento real y validación interna, usando <code>PROPORCION_VALIDACION = 0.2</code>.</li>
+<li>Se carga la carpeta <code>test</code> por separado y se mantiene intacta hasta la evaluación final.</li>
+</ol>
+<p>Este procedimiento permite ajustar el modelo utilizando únicamente información procedente de <code>train</code>, mientras que <code>test</code> funciona como conjunto independiente para estimar la capacidad de generalización del modelo final.</p>
 </div>
 </div>
 </div>
@@ -8203,7 +8223,7 @@ Distribución de imágenes en entrenamiento:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Dataset base usado para obtener las clases y construir los índices de partición.</span>
@@ -8213,12 +8233,14 @@ Distribución de imágenes en entrenamiento:
 <span class="n">indice_a_clase</span> <span class="o">=</span> <span class="p">{</span><span class="n">indice</span><span class="p">:</span> <span class="n">clase</span> <span class="k">for</span> <span class="n">clase</span><span class="p">,</span> <span class="n">indice</span> <span class="ow">in</span> <span class="n">clase_a_indice</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 <span class="n">numero_clases</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nombres_clases</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Clases detectadas: </span><span class="si">{</span><span class="n">nombres_clases</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Clases detectadas en train: </span><span class="si">{</span><span class="n">nombres_clases</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"clase_a_indice: </span><span class="si">{</span><span class="n">clase_a_indice</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">numero_clases</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Se esperaban 2 clases, pero se detectaron </span><span class="si">{</span><span class="n">numero_clases</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">nombres_clases</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
+<span class="c1"># Si no existe validation, se reserva un 20% de train para validación interna.</span>
+<span class="c1"># El conjunto test no se toca en este paso.</span>
 <span class="k">if</span> <span class="n">ruta_validacion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">generador</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">()</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">SEMILLA</span><span class="p">)</span>
     <span class="n">indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_base_entrenamiento</span><span class="p">),</span> <span class="n">generator</span><span class="o">=</span><span class="n">generador</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -8240,6 +8262,11 @@ Distribución de imágenes en entrenamiento:
 
 <span class="k">if</span> <span class="n">ruta_prueba</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">conjunto_prueba</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">ruta_prueba</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transformaciones_evaluacion</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">conjunto_prueba</span><span class="o">.</span><span class="n">class_to_idx</span> <span class="o">!=</span> <span class="n">clase_a_indice</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"Las clases de test no coinciden con las clases de train. "</span>
+            <span class="sa">f</span><span class="s2">"Train: </span><span class="si">{</span><span class="n">clase_a_indice</span><span class="si">}</span><span class="s2">. Test: </span><span class="si">{</span><span class="n">conjunto_prueba</span><span class="o">.</span><span class="n">class_to_idx</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">conjunto_prueba</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -8269,11 +8296,12 @@ Distribución de imágenes en entrenamiento:
         <span class="n">pin_memory</span><span class="o">=</span><span class="n">MEMORIA_FIJADA</span><span class="p">,</span>
     <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imágenes de entrenamiento: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_entrenamiento</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imágenes de validación: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_validacion</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imágenes originales en carpeta train: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_base_entrenamiento</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imágenes usadas para entrenamiento real: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_entrenamiento</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imágenes usadas para validación interna: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_validacion</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">conjunto_prueba</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imágenes de test: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_prueba</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"DataLoaders creados correctamente."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Imágenes reservadas para test final: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_prueba</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"DataLoaders creados correctamente sin utilizar test durante el entrenamiento."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8286,12 +8314,13 @@ Distribución de imágenes en entrenamiento:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Clases detectadas: ['chihuahua', 'muffin']
+<pre>Clases detectadas en train: ['chihuahua', 'muffin']
 clase_a_indice: {'chihuahua': 0, 'muffin': 1}
-Imágenes de entrenamiento: 3787
-Imágenes de validación: 946
-Imágenes de test: 1184
-DataLoaders creados correctamente.
+Imágenes originales en carpeta train: 4733
+Imágenes usadas para entrenamiento real: 3787
+Imágenes usadas para validación interna: 946
+Imágenes reservadas para test final: 1184
+DataLoaders creados correctamente sin utilizar test durante el entrenamiento.
 </pre>
 </div>
 </div>
@@ -8313,7 +8342,7 @@ DataLoaders creados correctamente.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">desnormalizar_imagen</span><span class="p">(</span><span class="n">tensor_imagen</span><span class="p">):</span>
@@ -8374,7 +8403,7 @@ DataLoaders creados correctamente.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">construir_modelo</span><span class="p">(</span><span class="n">numero_clases</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
@@ -8431,7 +8460,7 @@ Sequential(
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Se congela el extractor de características y se entrena unicamente el clasificador nuevo.</span>
@@ -8482,7 +8511,7 @@ Sequential(
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">entrenar_una_epoca</span><span class="p">(</span><span class="n">modelo</span><span class="p">,</span> <span class="n">cargador</span><span class="p">,</span> <span class="n">optimizador</span><span class="p">,</span> <span class="n">criterio</span><span class="p">,</span> <span class="n">dispositivo</span><span class="p">,</span> <span class="n">epoca</span><span class="p">,</span> <span class="n">epocas</span><span class="p">,</span> <span class="n">nombre_fase</span><span class="p">):</span>
@@ -8622,7 +8651,7 @@ Sequential(
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">historial_clasificador</span><span class="p">,</span> <span class="n">mejor_exactitud_clasificador</span> <span class="o">=</span> <span class="n">ajustar_modelo</span><span class="p">(</span>
@@ -8671,7 +8700,7 @@ Fase 1 - clasificador - época 1/3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Fase 1 - clasificador | Época 01/3 | pérdida_entrenamiento=0.1702 | exactitud_entrenamiento=0.9525 | pérdida_validación=0.0693 | exactitud_validación=0.9841 | tiempo=47.8s
+<pre>Fase 1 - clasificador | Época 01/3 | pérdida_entrenamiento=0.1702 | exactitud_entrenamiento=0.9525 | pérdida_validación=0.0693 | exactitud_validación=0.9841 | tiempo=48.1s
 
 Fase 1 - clasificador - época 2/3
 </pre>
@@ -8692,7 +8721,7 @@ Fase 1 - clasificador - época 2/3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Fase 1 - clasificador | Época 02/3 | pérdida_entrenamiento=0.0894 | exactitud_entrenamiento=0.9712 | pérdida_validación=0.0542 | exactitud_validación=0.9810 | tiempo=47.2s
+<pre>Fase 1 - clasificador | Época 02/3 | pérdida_entrenamiento=0.0894 | exactitud_entrenamiento=0.9712 | pérdida_validación=0.0542 | exactitud_validación=0.9810 | tiempo=48.2s
 
 Fase 1 - clasificador - época 3/3
 </pre>
@@ -8713,7 +8742,7 @@ Fase 1 - clasificador - época 3/3
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Fase 1 - clasificador | Época 03/3 | pérdida_entrenamiento=0.0769 | exactitud_entrenamiento=0.9744 | pérdida_validación=0.0441 | exactitud_validación=0.9852 | tiempo=47.8s
+<pre>Fase 1 - clasificador | Época 03/3 | pérdida_entrenamiento=0.0769 | exactitud_entrenamiento=0.9744 | pérdida_validación=0.0441 | exactitud_validación=0.9852 | tiempo=48.0s
 Mejor estado de Fase 1 - clasificador restaurado. Mejor exactitud de validación=0.9852
 Mejor exactitud de validación en fase 1: 0.9852
 </pre>
@@ -8737,7 +8766,7 @@ Mejor exactitud de validación en fase 1: 0.9852
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Se congela inicialmente todo el extractor.</span>
@@ -8790,7 +8819,7 @@ Mejor exactitud de validación en fase 1: 0.9852
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">historial_ajuste_fino</span><span class="p">,</span> <span class="n">mejor_exactitud_ajuste_fino</span> <span class="o">=</span> <span class="n">ajustar_modelo</span><span class="p">(</span>
@@ -8840,7 +8869,7 @@ Fase 2 - ajuste fino - época 1/2
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Fase 2 - ajuste fino | Época 01/2 | pérdida_entrenamiento=0.0764 | exactitud_entrenamiento=0.9702 | pérdida_validación=0.0379 | exactitud_validación=0.9905 | tiempo=54.5s
+<pre>Fase 2 - ajuste fino | Época 01/2 | pérdida_entrenamiento=0.0764 | exactitud_entrenamiento=0.9702 | pérdida_validación=0.0379 | exactitud_validación=0.9905 | tiempo=57.5s
 
 Fase 2 - ajuste fino - época 2/2
 </pre>
@@ -8861,7 +8890,7 @@ Fase 2 - ajuste fino - época 2/2
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Fase 2 - ajuste fino | Época 02/2 | pérdida_entrenamiento=0.0581 | exactitud_entrenamiento=0.9789 | pérdida_validación=0.0290 | exactitud_validación=0.9947 | tiempo=54.3s
+<pre>Fase 2 - ajuste fino | Época 02/2 | pérdida_entrenamiento=0.0581 | exactitud_entrenamiento=0.9789 | pérdida_validación=0.0290 | exactitud_validación=0.9947 | tiempo=57.4s
 Mejor estado de Fase 2 - ajuste fino restaurado. Mejor exactitud de validación=0.9947
 Mejor exactitud de validación durante el ajuste fino: 0.9947
 </pre>
@@ -8885,7 +8914,7 @@ Mejor exactitud de validación durante el ajuste fino: 0.9947
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">graficar_historial</span><span class="p">(</span><span class="n">historial</span><span class="p">):</span>
@@ -8948,7 +8977,7 @@ Mejor exactitud de validación durante el ajuste fino: 0.9947
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="13.-Evaluaci%C3%B3n-final-con-m%C3%A9tricas-de-la-PEC-2">13. Evaluación final con métricas de la PEC 2<a class="anchor-link" href="#13.-Evaluaci%C3%B3n-final-con-m%C3%A9tricas-de-la-PEC-2">¶</a></h2><p>La evaluación final se realiza sobre el conjunto de <strong>test</strong> si está disponible. Si el dataset no incluye una partición de test independiente, se utiliza el conjunto de validación como aproximación.</p>
+<h2 id="13.-Evaluaci%C3%B3n-final-con-m%C3%A9tricas-de-la-PEC-2">13. Evaluación final con métricas de la PEC 2<a class="anchor-link" href="#13.-Evaluaci%C3%B3n-final-con-m%C3%A9tricas-de-la-PEC-2">¶</a></h2><p>La evaluación final se realiza sobre la carpeta <strong><code>test</code></strong>, que se ha mantenido separada durante todo el entrenamiento. Esta separación es importante porque permite medir la generalización del modelo sobre imágenes que no han intervenido ni en el entrenamiento ni en la validación interna.</p>
 <p>Se calculan las métricas principales vistas en la PEC 2:</p>
 <ul>
 <li><strong>Matriz de confusión:</strong> permite observar los aciertos y errores por clase.</li>
@@ -8965,7 +8994,7 @@ Mejor exactitud de validación durante el ajuste fino: 0.9947
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">cargador_evaluacion</span> <span class="o">=</span> <span class="n">cargador_prueba</span> <span class="k">if</span> <span class="n">cargador_prueba</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">cargador_validacion</span>
@@ -9179,14 +9208,113 @@ weighted avg     0.9949    0.9949    0.9949      1184
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22aa8714">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Resultados-obtenidos-en-la-ejecuci%C3%B3n-final">Resultados obtenidos en la ejecución final<a class="anchor-link" href="#Resultados-obtenidos-en-la-ejecuci%C3%B3n-final">¶</a></h3><p>En la ejecución realizada sobre el conjunto de <strong>test</strong>, el modelo obtiene un rendimiento muy alto. La pérdida final es <strong>0.0281</strong>, la exactitud alcanza <strong>0.9949</strong> y los valores de <strong>F1 macro</strong> y <strong>F1 ponderado</strong> son ambos <strong>0.9949</strong>. Esto indica que el modelo clasifica correctamente la gran mayoría de imágenes y que el rendimiento es equilibrado entre las dos clases.</p>
+<p><strong>Métricas globales</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th style="text-align:right">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pérdida en test</td>
+<td style="text-align:right">0.0281</td>
+</tr>
+<tr>
+<td>Exactitud / Accuracy</td>
+<td style="text-align:right">0.9949</td>
+</tr>
+<tr>
+<td>F1 macro</td>
+<td style="text-align:right">0.9949</td>
+</tr>
+<tr>
+<td>F1 ponderado</td>
+<td style="text-align:right">0.9949</td>
+</tr>
+<tr>
+<td>Aciertos</td>
+<td style="text-align:right">1178 / 1184</td>
+</tr>
+<tr>
+<td>Errores</td>
+<td style="text-align:right">6 / 1184</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Métricas por clase</strong></p>
+<table>
+<thead>
+<tr>
+<th>Clase</th>
+<th style="text-align:right">Precision</th>
+<th style="text-align:right">Recall</th>
+<th style="text-align:right">F1-Score</th>
+<th style="text-align:right">Soporte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chihuahua</td>
+<td style="text-align:right">0.9938</td>
+<td style="text-align:right">0.9969</td>
+<td style="text-align:right">0.9953</td>
+<td style="text-align:right">640</td>
+</tr>
+<tr>
+<td>Muffin</td>
+<td style="text-align:right">0.9963</td>
+<td style="text-align:right">0.9926</td>
+<td style="text-align:right">0.9945</td>
+<td style="text-align:right">544</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Matriz de confusión</strong></p>
+<p>Filas = clase real. Columnas = clase predicha.</p>
+<table>
+<thead>
+<tr>
+<th>Clase real / Predicción</th>
+<th style="text-align:right">Chihuahua</th>
+<th style="text-align:right">Muffin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chihuahua</td>
+<td style="text-align:right">638</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td>Muffin</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">540</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e2ae73d9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Interpretaci%C3%B3n-de-las-m%C3%A9tricas-finales">Interpretación de las métricas finales<a class="anchor-link" href="#Interpretaci%C3%B3n-de-las-m%C3%A9tricas-finales">¶</a></h3><p>La <strong>matriz de confusión</strong> muestra el número de imágenes correctamente clasificadas en la diagonal principal. Los valores fuera de la diagonal representan errores: muffins clasificados como chihuahuas o chihuahuas clasificados como muffins.</p>
-<p>El <strong>F1-Score</strong> es especialmente útil porque resume el equilibrio entre precision y recall. En este problema binario, un F1 alto en ambas clases indica que el modelo no solo acierta globalmente, sino que también mantiene un comportamiento equilibrado entre <code>muffin</code> y <code>chihuahua</code>. Si el F1 macro y el F1 ponderado son similares, puede interpretarse que el rendimiento es estable entre clases y que no existe un sesgo fuerte hacia una de ellas.</p>
+<h3 id="Interpretaci%C3%B3n-de-las-m%C3%A9tricas-finales">Interpretación de las métricas finales<a class="anchor-link" href="#Interpretaci%C3%B3n-de-las-m%C3%A9tricas-finales">¶</a></h3><p>La <strong>matriz de confusión</strong> muestra que el modelo clasifica correctamente <strong>638 chihuahuas</strong> y <strong>540 muffins</strong>. Los errores son muy reducidos: únicamente <strong>2 chihuahuas</strong> se clasifican como muffins y <strong>4 muffins</strong> se clasifican como chihuahuas. En total, el modelo acierta <strong>1178 de 1184 imágenes</strong>, por lo que solo comete <strong>6 errores</strong> en el conjunto de test.</p>
+<p>El <strong>F1-Score</strong> es especialmente útil porque combina precision y recall en una única medida. En este caso, el modelo obtiene un <strong>F1-Score de 0.9953 para la clase chihuahua</strong> y un <strong>F1-Score de 0.9945 para la clase muffin</strong>. La diferencia entre ambas clases es mínima, lo que indica que el modelo no presenta un sesgo relevante hacia una de ellas.</p>
+<p>El <strong>F1 macro</strong> tiene un valor de <strong>0.9949</strong>, por lo que el rendimiento medio entre clases es excelente. Además, el <strong>F1 ponderado</strong> también es <strong>0.9949</strong>, lo que confirma que el buen resultado no se debe a un desequilibrio entre clases, sino a un comportamiento estable del clasificador en ambas categorías.</p>
+<p>Por tanto, los resultados obtenidos permiten concluir que el proceso de fine-tuning ha sido adecuado para esta tarea. El modelo final distingue con gran precisión entre muffins y chihuahuas, mantiene un rendimiento equilibrado entre clases y obtiene una capacidad de generalización muy alta sobre el conjunto de test.</p>
 </div>
 </div>
 </div>
@@ -9206,7 +9334,7 @@ weighted avg     0.9949    0.9949    0.9949      1184
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predecir_lote</span><span class="p">(</span><span class="n">modelo</span><span class="p">,</span> <span class="n">cargador</span><span class="p">,</span> <span class="n">nombres_clases</span><span class="p">,</span> <span class="n">dispositivo</span><span class="p">,</span> <span class="n">maximo_imagenes</span><span class="o">=</span><span class="mi">9</span><span class="p">):</span>
@@ -9260,22 +9388,22 @@ weighted avg     0.9949    0.9949    0.9949      1184
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="15.-Descripci%C3%B3n-del-proceso">15. Descripción del proceso<a class="anchor-link" href="#15.-Descripci%C3%B3n-del-proceso">¶</a></h2><ul>
+<h2 id="15.-Descripci%C3%B3n-del-proceso-y-conclusi%C3%B3n-final">15. Descripción del proceso y conclusión final<a class="anchor-link" href="#15.-Descripci%C3%B3n-del-proceso-y-conclusi%C3%B3n-final">¶</a></h2><ul>
 <li><p><strong>Objetivo del experimento:</strong> El objetivo es entrenar un clasificador binario capaz de distinguir entre imágenes de muffins y chihuahuas utilizando el dataset propuesto de Kaggle. Para ello se aplica aprendizaje por transferencia, una estrategia adecuada cuando se dispone de un conjunto de datos limitado y se quiere aprovechar el conocimiento visual aprendido previamente por un modelo entrenado en un corpus de gran escala.</p>
 </li>
-<li><p><strong>Entorno de ejecución:</strong> El notebook se ha configurado para ejecutarse de forma eficiente en un MacBook con Apple Silicon, como el MacBook M3 Pro, mediante el backend <code>mps</code> de PyTorch. Este dispositivo permite aprovechar la aceleración gráfica integrada de Apple. Si <code>mps</code> no está disponible, el código selecciona automáticamente <code>cuda</code> en caso de disponer de una GPU NVIDIA o <code>cpu</code> como última alternativa. Para mejorar la estabilidad en notebooks locales, se utiliza inicialmente <code>NUMERO_TRABAJADORES = 0</code> en los <code>DataLoader</code> y un tamaño de lote moderado cuando se detecta <code>mps</code>.</p>
+<li><p><strong>Entorno de ejecución:</strong> El notebook se ha configurado para ejecutarse de forma eficiente en un MacBook con Apple Silicon, como el MacBook M3 Pro, mediante el backend <code>mps</code> de PyTorch. Este dispositivo permite aprovechar la aceleración gráfica integrada de Apple. Si <code>mps</code> no está disponible, el código selecciona automáticamente <code>cuda</code> en caso de disponer de una GPU NVIDIA o <code>cpu</code> como última alternativa. Para mejorar la estabilidad en notebooks locales, se utiliza <code>NUMERO_TRABAJADORES = 0</code> en los <code>DataLoader</code> y un tamaño de lote moderado cuando se detecta <code>mps</code>.</p>
 </li>
-<li><p><strong>Arquitectura elegida:</strong> Se ha utilizado <strong>EfficientNet-B0</strong>, una red convolucional preentrenada con ImageNet. Esta arquitectura resulta apropiada porque ofrece una buena relación entre rendimiento y coste computacional. Sus primeras capas aprenden características visuales generales, como bordes, texturas y formas, mientras que las capas superiores capturan patrones más específicos. Para adaptar la arquitectura a este problema, se sustituye el clasificador original por una capa lineal con dos salidas, correspondientes a las clases <code>muffin</code> y <code>chihuahua</code>.</p>
+<li><p><strong>Arquitectura elegida:</strong> Se ha utilizado <strong>EfficientNet-B0</strong>, una red convolucional preentrenada con ImageNet. Esta arquitectura resulta apropiada porque ofrece una buena relación entre rendimiento y coste computacional. Sus primeras capas aprenden características visuales generales, como bordes, texturas y formas, mientras que las capas superiores capturan patrones más específicos. Para adaptar la arquitectura a este problema, se sustituye el clasificador original por una capa lineal con dos salidas, correspondientes a las clases <code>chihuahua</code> y <code>muffin</code>.</p>
 </li>
-<li><p><strong>Preparación de los datos:</strong> Las imágenes se cargan con <code>torchvision.datasets.ImageFolder</code>, que asigna etiquetas automáticamente según el nombre de las subcarpetas. El conjunto de entrenamiento utiliza aumento de datos mediante recortes aleatorios, volteo horizontal y pequeñas variaciones de color. Esta decisión busca mejorar la capacidad de generalización del modelo. En validación y test se aplican transformaciones deterministas para obtener una evaluación estable. Todas las imágenes se redimensionan a 224x224 píxeles y se normalizan con los valores de ImageNet, ya que EfficientNet-B0 fue preentrenado bajo esa distribución de entrada.</p>
+<li><p><strong>Preparación de los datos:</strong> El dataset descargado de Kaggle contiene dos carpetas principales: <code>train</code> y <code>test</code>. Para evitar fuga de información, la carpeta <code>test</code> se mantiene reservada hasta la evaluación final. Como no se dispone de una carpeta de validación independiente, se divide la carpeta <code>train</code> de forma reproducible en entrenamiento real y validación interna. En esta ejecución, <code>train</code> contiene <strong>4733 imágenes</strong>, de las cuales <strong>3787</strong> se usan para entrenar y <strong>946</strong> para validar; además, <code>test</code> contiene <strong>1184 imágenes</strong> reservadas para la evaluación final. El conjunto de entrenamiento utiliza aumento de datos mediante recortes aleatorios, volteo horizontal y pequeñas variaciones de color. Esta decisión busca mejorar la capacidad de generalización del modelo. En validación y test se aplican transformaciones deterministas para obtener una evaluación estable. Todas las imágenes se redimensionan a 224x224 píxeles y se normalizan con los valores de ImageNet, ya que EfficientNet-B0 fue preentrenado bajo esa distribución de entrada.</p>
 </li>
-<li><p><strong>Primera fase de entrenamiento:</strong> En la primera fase se congelan las capas convolucionales del modelo preentrenado y se entrena únicamente el nuevo clasificador final. En esta etapa, EfficientNet-B0 funciona como extractor de características y el entrenamiento se centra en aprender la separación entre muffins y chihuahuas a partir de las representaciones ya disponibles.</p>
+<li><p><strong>Primera fase de entrenamiento:</strong> En la primera fase se congelan las capas convolucionales del modelo preentrenado y se entrena únicamente el nuevo clasificador final. En esta etapa, EfficientNet-B0 funciona como extractor de características y el entrenamiento se centra en aprender la separación entre muffins y chihuahuas a partir de las representaciones ya disponibles. En la ejecución realizada, esta fase se entrena durante <strong>3 épocas</strong> y alcanza una mejor exactitud de validación de <strong>0.9852</strong>.</p>
 </li>
-<li><p><strong>Fase de fine-tuning:</strong> En la segunda fase se descongelan los últimos bloques convolucionales y se entrenan junto con el clasificador. Esta fase permite adaptar parcialmente las representaciones superiores al dominio específico del dataset. Para evitar perder el conocimiento adquirido durante el preentrenamiento, se utilizan tasas de aprendizaje bajas, especialmente en el extractor de características.</p>
+<li><p><strong>Fase de fine-tuning:</strong> En la segunda fase se descongelan los últimos bloques convolucionales y se entrenan junto con el clasificador. Esta fase permite adaptar parcialmente las representaciones superiores al dominio específico del dataset. Para evitar perder el conocimiento adquirido durante el preentrenamiento, se utilizan tasas de aprendizaje bajas, especialmente en el extractor de características. En la ejecución realizada, el ajuste fino se entrena durante <strong>2 épocas</strong> y mejora la mejor exactitud de validación hasta <strong>0.9947</strong>.</p>
 </li>
-<li><p><strong>Evaluación del modelo:</strong> El modelo final se evalúa con las métricas de la PEC 2: matriz de confusión y F1-Score. La matriz de confusión permite observar de forma directa cuántas imágenes de cada clase han sido clasificadas correctamente y cuántas se han confundido con la otra clase. El F1-Score complementa la exactitud porque combina precision y recall, ofreciendo una medida más informativa cuando se quiere analizar el equilibrio del rendimiento entre clases. Además, se calcula tanto el F1 macro como el F1 ponderado para valorar si el comportamiento del modelo es equilibrado entre las dos clases.</p>
+<li><p><strong>Evaluación del modelo:</strong> El modelo final se evalúa exclusivamente sobre la carpeta <code>test</code>, que no ha sido utilizada durante el entrenamiento ni durante la validación interna. Para ello se emplean las métricas de la PEC 2: matriz de confusión y F1-Score. La matriz de confusión obtenida es <code>[[638, 2], [4, 540]]</code>, donde las filas representan la clase real y las columnas la clase predicha. Esto implica que el modelo clasifica correctamente <strong>638 chihuahuas</strong> y <strong>540 muffins</strong>, con solo <strong>6 errores</strong> sobre <strong>1184 imágenes</strong>. El F1-Score es <strong>0.9953</strong> para <code>chihuahua</code> y <strong>0.9945</strong> para <code>muffin</code>; además, tanto el <strong>F1 macro</strong> como el <strong>F1 ponderado</strong> alcanzan <strong>0.9949</strong>.</p>
 </li>
-<li><p><strong>Conclusión:</strong> El fine-tuning de un modelo preentrenado permite abordar la clasificación Muffin vs Chihuahua de forma eficiente, evitando entrenar una red profunda desde cero. La combinación de EfficientNet-B0, aumento de datos, congelación inicial del extractor y ajuste fino posterior constituye una estrategia adecuada para mejorar la generalización y obtener un clasificador robusto con un coste computacional razonable. En un MacBook M3 Pro, el uso de <code>mps</code> permite acelerar el entrenamiento frente a CPU, aunque puede ser menos rápido que una GPU NVIDIA con CUDA.</p>
+<li><p><strong>Conclusión:</strong> El fine-tuning de un modelo preentrenado permite abordar la clasificación Muffin vs Chihuahua de forma eficiente, evitando entrenar una red profunda desde cero. La combinación de EfficientNet-B0, aumento de datos, congelación inicial del extractor y ajuste fino posterior constituye una estrategia adecuada para mejorar la generalización y obtener un clasificador robusto con un coste computacional razonable. Los resultados finales muestran un rendimiento excelente y equilibrado entre clases, por lo que el modelo final cumple adecuadamente el objetivo de distinguir entre muffins y chihuahuas.</p>
 </li>
 </ul>
 </div>
